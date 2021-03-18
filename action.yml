@@ -1,4 +1,4 @@
-name: Update Twitter Status
+name: Post Twitter Status
 description: "This action posts a status message on the Twitter feed."
 author: "julb"
 branding:
