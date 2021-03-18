@@ -1,0 +1,28 @@
+name: Update Twitter Status
+description: "This action posts a status message on the Twitter feed."
+author: "julb"
+branding:
+  icon: send
+  color: green
+inputs:
+  message:
+    description: "The message to post."
+    required: true
+  twitter_app_consumer_api_key:
+    description: "The Twitter Application Consumer API key."
+    required: true
+  twitter_app_consumer_api_secret_key:
+    description: "The Twitter Application Consumer API secret key."
+    required: true
+  twitter_app_access_token:
+    description: "The Twitter Application Access Token."
+    required: true
+  twitter_app_access_token_secret:
+    description: "The Twitter Application Access Token secret."
+    required: true
+outputs:
+  id:
+    description: "The status id."
+runs:
+  using: "docker"
+  image: "Dockerfile"

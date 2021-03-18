@@ -1,0 +1,26 @@
+name: Integration Test
+
+on: 
+  workflow_dispatch:
+    inputs:
+      message:
+        description: "The message."
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test repository
+        id: post_twitter_status
+        uses: ./
+        with:
+          message:  ${{ github.event.inputs.message }}
+          twitter_app_consumer_api_key: ${{ secrets.TWITTER_APP_CONSUMER_API_KEY }}
+          twitter_app_consumer_api_secret_key:  ${{ secrets.TWITTER_APP_CONSUMER_API_SECRET_KEY }}
+          twitter_app_access_token:  ${{ secrets.TWITTER_APP_ACCESS_TOKEN }}
+          twitter_app_access_token_secret:  ${{ secrets.TWITTER_APP_ACCESS_TOKEN_SECRET }}
+      - name: Check outputs
+        run: |
+          test "${{ steps.post_twitter_status.outputs.id }}" != ""
